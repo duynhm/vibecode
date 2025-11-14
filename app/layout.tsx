@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "VibeCode - Recruitment Platform",
@@ -13,30 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className="antialiased">
-        <nav className="bg-blue-600 text-white shadow-lg">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-              <a href="/" className="text-2xl font-bold">
-                VibeCode Recruitment
-              </a>
-              <div className="space-x-6">
-                <a href="/" className="hover:text-blue-200 transition">
-                  Home
-                </a>
-                <a href="/jobs" className="hover:text-blue-200 transition">
-                  Jobs
-                </a>
-              </div>
-            </div>
-          </div>
-        </nav>
+      <body className="antialiased bg-gray-50">
+        <Header />
         <main className="min-h-screen">{children}</main>
-        <footer className="bg-gray-800 text-white py-8 mt-12">
-          <div className="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VibeCode. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
