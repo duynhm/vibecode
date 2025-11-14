@@ -14,10 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
-      <body className="antialiased bg-gray-50">
+    <html lang="vi" suppressHydrationWarning className="light">
+      <body className="antialiased bg-gray-50 text-gray-900">
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen bg-gray-50">{children}</main>
         <Footer />
       </body>
     </html>
