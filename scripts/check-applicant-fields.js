@@ -112,19 +112,80 @@ async function checkApplicantFields() {
       console.log('⚠️  No description-like fields found');
     }
 
-    // Step 3: Try to create a test applicant with minimal fields
-    console.log('\n📝 Step 3: Testing minimal applicant creation');
+    // Step 3: Check hr.candidate fields (Odoo 18 separates candidate from applicant)
+    console.log('\n📝 Step 3: Checking hr.candidate fields');
+    const candidateFieldsResponse = await instance.post('/jsonrpc', {
+      jsonrpc: '2.0',
+      method: 'call',
+      params: {
+        service: 'object',
+        method: 'execute_kw',
+        args: [
+          ODOO_DB,
+          uid,
+          ODOO_PASSWORD,
+          'hr.candidate',
+          'fields_get',
+          [],
+          {
+            attributes: ['string', 'type', 'required'],
+          },
+        ],
+      },
+      id: 1,
+    });
+
+    const candidateFields = candidateFieldsResponse.data.result;
+    console.log('✅ hr.candidate fields retrieved\n');
+    console.log('Key hr.candidate fields:');
+    ['partner_name', 'email_from', 'partner_phone', 'partner_mobile'].forEach(fieldName => {
+      if (candidateFields[fieldName]) {
+        const field = candidateFields[fieldName];
+        console.log(`  - ${fieldName}: ${field.string} (${field.type}, required: ${field.required || false})`);
+      }
+    });
+
+    // Step 4: Try to create a test candidate and applicant
+    console.log('\n📝 Step 4: Testing candidate + applicant creation (Odoo 18 structure)');
 
     try {
-      const testData = {
-        partner_name: 'Test Applicant (Delete Me)',
+      // First create candidate
+      const candidateData = {
+        partner_name: 'Test Candidate (Delete Me)',
         email_from: 'test@example.com',
+        partner_phone: '+1234567890',
+      };
+
+      console.log('Step 4a: Creating candidate...');
+      const candidateResponse = await instance.post('/jsonrpc', {
+        jsonrpc: '2.0',
+        method: 'call',
+        params: {
+          service: 'object',
+          method: 'execute_kw',
+          args: [
+            ODOO_DB,
+            uid,
+            ODOO_PASSWORD,
+            'hr.candidate',
+            'create',
+            [candidateData],
+          ],
+        },
+        id: 1,
+      });
+
+      const candidateId = candidateResponse.data.result;
+      console.log(`✅ Candidate created with ID: ${candidateId}`);
+
+      // Then create applicant linked to candidate
+      const applicantData = {
+        candidate_id: candidateId,
         job_id: 1, // Assuming job ID 1 exists
       };
 
-      console.log('Attempting to create with fields:', Object.keys(testData));
-
-      const createResponse = await instance.post('/jsonrpc', {
+      console.log('Step 4b: Creating applicant linked to candidate...');
+      const applicantResponse = await instance.post('/jsonrpc', {
         jsonrpc: '2.0',
         method: 'call',
         params: {
@@ -136,15 +197,15 @@ async function checkApplicantFields() {
             ODOO_PASSWORD,
             'hr.applicant',
             'create',
-            [testData],
+            [applicantData],
           ],
         },
         id: 1,
       });
 
-      if (createResponse.data.result) {
-        console.log(`✅ Successfully created test applicant with ID: ${createResponse.data.result}`);
-        console.log('   (Please delete this test applicant from Odoo manually)');
+      if (applicantResponse.data.result) {
+        console.log(`✅ Successfully created test applicant with ID: ${applicantResponse.data.result}`);
+        console.log('   (Please delete this test candidate and applicant from Odoo manually)');
       }
     } catch (error) {
       console.log('⚠️  Test creation failed:', error.response?.data?.error?.data?.message || error.message);

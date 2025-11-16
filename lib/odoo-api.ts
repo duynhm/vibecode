@@ -168,17 +168,26 @@ class OdooAPI {
 
   /**
    * Submit application to Odoo (Odoo 18 compatible)
+   * In Odoo 18, candidates are separated from applications:
+   * 1. Create hr.candidate record (personal info)
+   * 2. Create hr.applicant record (links candidate to job)
    */
   async submitApplication(data: OdooApplicationPayload): Promise<ApplicationResponse> {
     try {
-      // Create applicant in Odoo - using only core fields available in Odoo 18
-      const applicantId = await this.callOdoo('hr.applicant', 'create', [
+      // Step 1: Create candidate record with personal information
+      const candidateId = await this.callOdoo('hr.candidate', 'create', [
         {
           partner_name: data.partner_name,
           email_from: data.email_from,
           partner_phone: data.partner_phone,
+        },
+      ]);
+
+      // Step 2: Create applicant record linking candidate to job
+      const applicantId = await this.callOdoo('hr.applicant', 'create', [
+        {
+          candidate_id: candidateId,
           job_id: data.job_id,
-          // Note: description and linkedin_url fields removed in Odoo 18
           // stage_id will be set to default initial stage by Odoo
         },
       ]);

@@ -257,6 +257,75 @@ ps aux | grep odoo
 netstat -tlnp | grep 8069
 ```
 
+## 📋 ODOO 18 SPECIFIC CHANGES
+
+### Important Data Model Changes in Odoo 18
+
+Odoo 18 has made significant changes to the Recruitment module structure:
+
+#### 1. hr.job Model Changes
+- **Removed field:** `state` - The recruitment state field no longer exists
+- **Impact:** Cannot filter jobs by state anymore. Fetch all jobs and handle filtering on frontend if needed.
+
+#### 2. hr.applicant Model Changes (MAJOR CHANGE)
+- **New required field:** `candidate_id` - Now mandatory!
+- **Removed fields:** `description`, `linkedin_url`, and personal info fields
+- **New structure:** Odoo 18 separates candidate information from applications
+
+#### 3. New hr.candidate Model
+Personal candidate information is now stored in a separate `hr.candidate` model:
+- `partner_name` - Candidate's full name
+- `email_from` - Email address
+- `partner_phone` - Phone number
+- `partner_mobile` - Mobile number
+
+#### 4. Application Submission Flow in Odoo 18
+
+**Old way (Odoo 17 and earlier):**
+```javascript
+// Create applicant directly with all info
+create('hr.applicant', {
+  partner_name: 'John Doe',
+  email_from: 'john@example.com',
+  partner_phone: '123456789',
+  job_id: 1,
+  description: 'Cover letter...'
+})
+```
+
+**New way (Odoo 18):**
+```javascript
+// Step 1: Create candidate with personal info
+const candidateId = create('hr.candidate', {
+  partner_name: 'John Doe',
+  email_from: 'john@example.com',
+  partner_phone: '123456789'
+});
+
+// Step 2: Create applicant linking candidate to job
+const applicantId = create('hr.applicant', {
+  candidate_id: candidateId,
+  job_id: 1
+});
+```
+
+#### 5. API Endpoint Changes
+- **Old endpoint:** `/web/dataset/call_kw`
+- **New endpoint:** `/jsonrpc`
+- **Method format:** Must use `execute_kw` service method
+
+### Testing Odoo 18 Compatibility
+
+Use the diagnostic script to check available fields:
+```bash
+node scripts/check-applicant-fields.js
+```
+
+This will:
+- Show all available fields in hr.applicant model
+- Show all available fields in hr.candidate model
+- Test creating a candidate and applicant with the new structure
+
 ### Lỗi: No jobs found
 
 **Nguyên nhân:** Chưa tạo jobs hoặc jobs chưa published
