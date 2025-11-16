@@ -17,14 +17,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare payload for Odoo
+    // Prepare payload for Odoo (Odoo 18 - removed description and linkedin_url fields)
     const payload: OdooApplicationPayload = {
       job_id: body.jobId,
       partner_name: body.partner_name,
       email_from: body.email_from,
       partner_phone: body.partner_phone,
-      description: body.description || '',
-      linkedin_url: body.linkedin_url || '',
+      // Note: description and linkedin_url fields not supported in Odoo 18
     };
 
     // Submit to Odoo

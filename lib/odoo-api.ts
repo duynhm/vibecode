@@ -167,19 +167,18 @@ class OdooAPI {
   }
 
   /**
-   * Submit application to Odoo
+   * Submit application to Odoo (Odoo 18 compatible)
    */
   async submitApplication(data: OdooApplicationPayload): Promise<ApplicationResponse> {
     try {
-      // Create applicant in Odoo
+      // Create applicant in Odoo - using only core fields available in Odoo 18
       const applicantId = await this.callOdoo('hr.applicant', 'create', [
         {
           partner_name: data.partner_name,
           email_from: data.email_from,
           partner_phone: data.partner_phone,
-          description: data.description || '',
-          linkedin_url: data.linkedin_url || '',
           job_id: data.job_id,
+          // Note: description and linkedin_url fields removed in Odoo 18
           // stage_id will be set to default initial stage by Odoo
         },
       ]);
