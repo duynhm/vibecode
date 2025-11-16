@@ -51,20 +51,27 @@ class OdooAPI {
   }
 
   /**
-   * Call Odoo API method
+   * Call Odoo API method (Odoo 18 compatible)
    */
   private async callOdoo(model: string, method: string, args: any[] = [], kwargs: any = {}): Promise<any> {
     await this.authenticate();
 
     try {
-      const response = await axios.post(`${this.baseUrl}/web/dataset/call_kw`, {
+      const response = await axios.post(`${this.baseUrl}/jsonrpc`, {
         jsonrpc: '2.0',
         method: 'call',
         params: {
-          model,
-          method,
-          args,
-          kwargs,
+          service: 'object',
+          method: 'execute_kw',
+          args: [
+            this.db,
+            this.uid,
+            this.password,
+            model,
+            method,
+            args,
+            kwargs,
+          ],
         },
       });
 
@@ -76,14 +83,14 @@ class OdooAPI {
   }
 
   /**
-   * Get all active jobs
+   * Get all jobs (Odoo 18 - state field removed from hr.job)
    */
   async getJobs(): Promise<JobListResponse> {
     try {
       const jobs = await this.callOdoo(
         'hr.job',
         'search_read',
-        [[['state', '=', 'recruit']]], // Only get jobs in recruitment state
+        [[]], // Get all jobs (Odoo 18 removed state field)
         {
           fields: [
             'id',
@@ -93,7 +100,6 @@ class OdooAPI {
             'department_id',
             'address_id',
             'no_of_recruitment',
-            'state',
           ],
         }
       );
@@ -106,7 +112,7 @@ class OdooAPI {
         department: job.department_id ? job.department_id[1] : undefined,
         location: job.address_id ? job.address_id[1] : undefined,
         numberOfPositions: job.no_of_recruitment || 1,
-        isActive: job.state === 'recruit',
+        isActive: true, // All jobs are considered active in Odoo 18
       }));
 
       return {
@@ -120,7 +126,7 @@ class OdooAPI {
   }
 
   /**
-   * Get single job by ID
+   * Get single job by ID (Odoo 18 compatible)
    */
   async getJob(id: number): Promise<Job | null> {
     try {
@@ -137,7 +143,6 @@ class OdooAPI {
             'department_id',
             'address_id',
             'no_of_recruitment',
-            'state',
           ],
         }
       );
@@ -153,7 +158,7 @@ class OdooAPI {
         department: job.department_id ? job.department_id[1] : undefined,
         location: job.address_id ? job.address_id[1] : undefined,
         numberOfPositions: job.no_of_recruitment || 1,
-        isActive: job.state === 'recruit',
+        isActive: true, // All jobs are considered active in Odoo 18
       };
     } catch (error) {
       console.error('Error fetching job from Odoo:', error);
