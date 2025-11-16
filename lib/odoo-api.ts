@@ -171,6 +171,7 @@ class OdooAPI {
    * In Odoo 18, candidates are separated from applications:
    * 1. Create hr.candidate record (personal info)
    * 2. Create hr.applicant record (links candidate to job)
+   * 3. Attach CV file to applicant (if provided)
    */
   async submitApplication(data: OdooApplicationPayload): Promise<ApplicationResponse> {
     try {
@@ -191,6 +192,20 @@ class OdooAPI {
           // stage_id will be set to default initial stage by Odoo
         },
       ]);
+
+      // Step 3: Attach CV file to applicant if provided
+      if (data.cv_file && data.cv_filename) {
+        await this.callOdoo('ir.attachment', 'create', [
+          {
+            name: data.cv_filename,
+            datas: data.cv_file, // base64 encoded file
+            res_model: 'hr.applicant',
+            res_id: applicantId,
+            type: 'binary',
+            mimetype: data.cv_mimetype || 'application/octet-stream',
+          },
+        ]);
+      }
 
       return {
         success: true,

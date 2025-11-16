@@ -20,6 +20,8 @@ export default function ApplicationForm({ jobId, jobName }: ApplicationFormProps
     currentCompany: '',
   });
 
+  const [cvFile, setCvFile] = useState<File | null>(null);
+  const [cvFileBase64, setCvFileBase64] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{
     type: 'success' | 'error';
@@ -34,6 +36,54 @@ export default function ApplicationForm({ jobId, jobName }: ApplicationFormProps
       ...prev,
       [name]: name === 'yearsOfExperience' ? Number(value) : value,
     }));
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      setCvFile(null);
+      setCvFileBase64('');
+      return;
+    }
+
+    // Validate file type (PDF, DOC, DOCX)
+    const allowedTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'Please upload a PDF or Word document (.pdf, .doc, .docx)',
+      });
+      e.target.value = '';
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    if (file.size > maxSize) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'File size must be less than 5MB',
+      });
+      e.target.value = '';
+      return;
+    }
+
+    setCvFile(file);
+    setSubmitMessage(null);
+
+    // Convert file to base64
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const base64 = event.target?.result as string;
+      // Remove data URL prefix (e.g., "data:application/pdf;base64,")
+      const base64Data = base64.split(',')[1];
+      setCvFileBase64(base64Data);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -63,6 +113,10 @@ Current Company: ${formData.currentCompany || 'N/A'}
           partner_phone: formData.phone,
           description,
           linkedin_url: formData.linkedinUrl,
+          // CV file data
+          cv_file: cvFileBase64 || undefined,
+          cv_filename: cvFile?.name || undefined,
+          cv_mimetype: cvFile?.type || undefined,
         }),
       });
 
@@ -84,6 +138,11 @@ Current Company: ${formData.currentCompany || 'N/A'}
           currentPosition: '',
           currentCompany: '',
         });
+        setCvFile(null);
+        setCvFileBase64('');
+        // Reset file input
+        const fileInput = document.getElementById('cvFile') as HTMLInputElement;
+        if (fileInput) fileInput.value = '';
       } else {
         setSubmitMessage({
           type: 'error',
@@ -249,6 +308,32 @@ Current Company: ${formData.currentCompany || 'N/A'}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               placeholder="https://linkedin.com/in/yourprofile"
             />
+          </div>
+
+          <div className="md:col-span-2">
+            <label
+              htmlFor="cvFile"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Upload CV/Resume <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="file"
+              id="cvFile"
+              name="cvFile"
+              accept=".pdf,.doc,.docx"
+              required
+              onChange={handleFileChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            />
+            <p className="mt-1 text-sm text-gray-500">
+              Accepted formats: PDF, DOC, DOCX (Max 5MB)
+            </p>
+            {cvFile && (
+              <p className="mt-2 text-sm text-green-600">
+                ✓ Selected: {cvFile.name} ({(cvFile.size / 1024 / 1024).toFixed(2)} MB)
+              </p>
+            )}
           </div>
 
           <div className="md:col-span-2">

@@ -27,6 +27,10 @@ export interface OdooApplicationPayload {
   type_id?: number;
   stage_id?: number;
   job_id: number;
+  // CV file data (base64 encoded)
+  cv_file?: string;
+  cv_filename?: string;
+  cv_mimetype?: string;
 }
 
 export interface ApplicationResponse {
