@@ -55,7 +55,7 @@ async function testOdooConnection() {
       // Test 2: Get Jobs using JSON-RPC
       console.log('\n📝 Test 2: Fetching Jobs');
 
-      // Try the correct endpoint for Odoo 18
+      // Odoo 18 - removed 'state' field from hr.job
       const jobsResponse = await instance.post('/jsonrpc', {
         jsonrpc: '2.0',
         method: 'call',
@@ -68,9 +68,9 @@ async function testOdooConnection() {
             ODOO_PASSWORD,
             'hr.job',
             'search_read',
-            [[['state', '=', 'recruit']]],
+            [[]],  // Empty domain - get all jobs
             {
-              fields: ['id', 'name', 'description', 'department_id', 'address_id', 'no_of_recruitment', 'state'],
+              fields: ['id', 'name', 'description', 'department_id', 'address_id', 'no_of_recruitment'],
               limit: 10,
             }
           ]
@@ -88,7 +88,6 @@ async function testOdooConnection() {
             console.log(`   ${index + 1}. ${job.name} (ID: ${job.id})`);
             console.log(`      Department: ${job.department_id ? job.department_id[1] : 'N/A'}`);
             console.log(`      Positions: ${job.no_of_recruitment || 1}`);
-            console.log(`      State: ${job.state}`);
           });
         } else {
           console.log('   ⚠️  No jobs found.');
