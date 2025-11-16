@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import ApplicationForm from '@/components/ApplicationForm';
 import type { Job } from '@/types/job';
+import { getJob } from '@/lib/odoo-api';
 
 // Mock data - same as jobs page
 const mockJobs: Job[] = [
@@ -128,16 +129,16 @@ const mockJobs: Job[] = [
   },
 ];
 
-// Uncomment this when Odoo is configured
-// async function getJobData(id: number) {
-//   try {
-//     const job = await getJob(id);
-//     return job;
-//   } catch (error) {
-//     console.error('Error fetching job:', error);
-//     return null;
-//   }
-// }
+// Fetch job from Odoo
+async function getJobData(id: number) {
+  try {
+    const job = await getJob(id);
+    return job;
+  } catch (error) {
+    console.error('Error fetching job:', error);
+    return null;
+  }
+}
 
 export default async function JobDetailPage({
   params,
@@ -147,8 +148,8 @@ export default async function JobDetailPage({
   const resolvedParams = await params;
   const jobId = parseInt(resolvedParams.id);
 
-  // const job = await getJobData(jobId); // Uncomment when Odoo is ready
-  const job = mockJobs.find((j) => j.id === jobId); // Using mock data for now
+  const job = await getJobData(jobId); // Fetch from Odoo
+  // const job = mockJobs.find((j) => j.id === jobId); // Using mock data for now
 
   if (!job) {
     notFound();

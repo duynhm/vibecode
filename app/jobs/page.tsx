@@ -1,5 +1,6 @@
 import JobCard from '@/components/JobCard';
 import type { Job } from '@/types/job';
+import { getJobs } from '@/lib/odoo-api';
 
 // Mock data for demo - Replace with actual Odoo API call in production
 const mockJobs: Job[] = [
@@ -60,20 +61,20 @@ const mockJobs: Job[] = [
   },
 ];
 
-// Uncomment this when Odoo is configured
-// async function getJobsData() {
-//   try {
-//     const { jobs } = await getJobs();
-//     return jobs;
-//   } catch (error) {
-//     console.error('Error fetching jobs:', error);
-//     return [];
-//   }
-// }
+// Fetch jobs from Odoo
+async function getJobsData() {
+  try {
+    const { jobs } = await getJobs();
+    return jobs;
+  } catch (error) {
+    console.error('Error fetching jobs:', error);
+    return [];
+  }
+}
 
 export default async function JobsPage() {
-  // const jobs = await getJobsData(); // Uncomment when Odoo is ready
-  const jobs = mockJobs; // Using mock data for now
+  const jobs = await getJobsData(); // Fetch from Odoo
+  // const jobs = mockJobs; // Using mock data for now
 
   return (
     <div className="container mx-auto px-4 py-8">
