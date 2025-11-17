@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Package, Factory, TrendingUp, TrendingDown } from 'lucide-react'
 import { MockDataService } from '@/lib/mock/data'
-import { Product, MrpProduction } from '@/types'
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({

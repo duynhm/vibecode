@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
 import { AuthProvider } from '@/lib/auth-context'
-
-const inter = Inter({ subsets: ['latin', 'vietnamese'] })
 
 export const metadata: Metadata = {
   title: process.env.NEXT_PUBLIC_APP_NAME || 'Factory Management',
@@ -18,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi">
-      <body className={inter.className}>
+      <body className="font-sans antialiased">
         <AuthProvider>
           {children}
           <Toaster position="top-center" richColors />
