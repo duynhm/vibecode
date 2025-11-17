@@ -28,6 +28,8 @@ export interface AuthSession {
 }
 
 // Inventory types
+export type ProductTracking = 'none' | 'lot' | 'serial'
+
 export interface Product {
   id: number
   name: string
@@ -41,6 +43,7 @@ export interface Product {
   incoming_qty: number
   outgoing_qty: number
   image_128?: string
+  tracking?: ProductTracking // NEW: Odoo 18 tracking
 }
 
 export interface StockLocation {
@@ -78,6 +81,8 @@ export interface StockPicking {
   move_ids: number[]
   origin?: string
   products_count?: number
+  next_transfer_id?: number // NEW: For multi-step routes
+  backorder_id?: number // NEW: For backorders
 }
 
 export type MoveState = 'draft' | 'waiting' | 'confirmed' | 'assigned' | 'done' | 'cancel'
@@ -93,6 +98,52 @@ export interface StockMove {
   location_dest_id: [number, string]
   state: MoveState
   picking_id: number
+}
+
+// Lot/Serial Number types
+export interface LotSerial {
+  id: number
+  name: string
+  product_id: [number, string]
+  product_qty: number
+  company_id: [number, string]
+  create_date: string
+  expiration_date?: string
+  use_date?: string
+  removal_date?: string
+  alert_date?: string
+  note?: string
+}
+
+// Batch & Wave Picking types
+export type BatchWaveState = 'draft' | 'in_progress' | 'done' | 'cancel'
+export type BatchGroupCriteria = 'contact' | 'carrier' | 'location' | 'destination' | 'country'
+export type WaveGroupCriteria = 'product' | 'category' | 'location'
+
+export interface BatchTransfer {
+  id: number
+  name: string
+  picking_ids: number[]
+  user_id: [number, string]
+  state: BatchWaveState
+  batch_type: 'automatic' | 'manual'
+  grouped_by: BatchGroupCriteria
+  scheduled_date: string
+  pickings_count: number
+  total_qty: number
+}
+
+export interface WaveTransfer {
+  id: number
+  name: string
+  picking_ids: number[]
+  user_id: [number, string]
+  state: BatchWaveState
+  wave_type: 'automatic' | 'manual'
+  grouped_by: WaveGroupCriteria
+  scheduled_date: string
+  pickings_count: number
+  total_qty: number
 }
 
 // Manufacturing types

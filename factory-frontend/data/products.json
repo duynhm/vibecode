@@ -10,7 +10,8 @@
     "qty_available": 45.5,
     "virtual_available": 43.2,
     "incoming_qty": 20.0,
-    "outgoing_qty": 22.3
+    "outgoing_qty": 22.3,
+    "tracking": "lot"
   },
   {
     "id": 2,
@@ -23,7 +24,8 @@
     "qty_available": 12.8,
     "virtual_available": 11.5,
     "incoming_qty": 5.0,
-    "outgoing_qty": 6.3
+    "outgoing_qty": 6.3,
+    "tracking": "lot"
   },
   {
     "id": 3,
@@ -36,7 +38,8 @@
     "qty_available": 180.0,
     "virtual_available": 165.0,
     "incoming_qty": 50.0,
-    "outgoing_qty": 65.0
+    "outgoing_qty": 65.0,
+    "tracking": "lot"
   },
   {
     "id": 4,
@@ -49,7 +52,8 @@
     "qty_available": 450,
     "virtual_available": 420,
     "incoming_qty": 200,
-    "outgoing_qty": 230
+    "outgoing_qty": 230,
+    "tracking": "serial"
   },
   {
     "id": 5,
@@ -62,7 +66,8 @@
     "qty_available": 680,
     "virtual_available": 650,
     "incoming_qty": 300,
-    "outgoing_qty": 330
+    "outgoing_qty": 330,
+    "tracking": "lot"
   },
   {
     "id": 6,
@@ -75,7 +80,8 @@
     "qty_available": 820,
     "virtual_available": 780,
     "incoming_qty": 400,
-    "outgoing_qty": 440
+    "outgoing_qty": 440,
+    "tracking": "lot"
   },
   {
     "id": 7,
@@ -88,7 +94,8 @@
     "qty_available": 85,
     "virtual_available": 78,
     "incoming_qty": 30,
-    "outgoing_qty": 37
+    "outgoing_qty": 37,
+    "tracking": "none"
   },
   {
     "id": 8,
@@ -101,7 +108,8 @@
     "qty_available": 8.5,
     "virtual_available": 7.8,
     "incoming_qty": 3.0,
-    "outgoing_qty": 3.7
+    "outgoing_qty": 3.7,
+    "tracking": "lot"
   },
   {
     "id": 9,
@@ -114,7 +122,8 @@
     "qty_available": 520,
     "virtual_available": 490,
     "incoming_qty": 250,
-    "outgoing_qty": 280
+    "outgoing_qty": 280,
+    "tracking": "lot"
   },
   {
     "id": 10,
@@ -127,7 +136,8 @@
     "qty_available": 340,
     "virtual_available": 310,
     "incoming_qty": 150,
-    "outgoing_qty": 180
+    "outgoing_qty": 180,
+    "tracking": "lot"
   },
   {
     "id": 11,
@@ -140,7 +150,8 @@
     "qty_available": 120.0,
     "virtual_available": 115.0,
     "incoming_qty": 50.0,
-    "outgoing_qty": 55.0
+    "outgoing_qty": 55.0,
+    "tracking": "lot"
   },
   {
     "id": 12,
@@ -153,6 +164,7 @@
     "qty_available": 2500,
     "virtual_available": 2300,
     "incoming_qty": 1000,
-    "outgoing_qty": 1200
+    "outgoing_qty": 1200,
+    "tracking": "lot"
   }
 ]

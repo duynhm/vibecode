@@ -1,9 +1,10 @@
-import { Product, StockLocation, StockPicking, StockQuant, StockMove, MrpProduction, MrpWorkorder } from '@/types'
+import { Product, StockLocation, StockPicking, StockQuant, StockMove, LotSerial, MrpProduction, MrpWorkorder } from '@/types'
 import productsData from '@/data/products.json'
 import locationsData from '@/data/locations.json'
 import pickingsData from '@/data/pickings.json'
 import stockQuantsData from '@/data/stock-quants.json'
 import stockMovesData from '@/data/stock-moves.json'
+import lotSerialsData from '@/data/lot-serials.json'
 import productionsData from '@/data/productions.json'
 import workordersData from '@/data/workorders.json'
 
@@ -202,5 +203,60 @@ export class MockDataService {
   static async getStockQuantsByLocation(locationId: number): Promise<StockQuant[]> {
     await this.delay()
     return stockQuantsData.filter((q) => q.location_id[0] === locationId) as StockQuant[]
+  }
+
+  // ===== LOT/SERIAL NUMBERS =====
+
+  /**
+   * Get all lot/serial numbers
+   */
+  static async getLotSerials(): Promise<LotSerial[]> {
+    await this.delay()
+    return lotSerialsData as LotSerial[]
+  }
+
+  /**
+   * Get lot/serial by ID
+   */
+  static async getLotSerial(id: number): Promise<LotSerial | null> {
+    await this.delay()
+    const lot = lotSerialsData.find((l) => l.id === id)
+    return lot ? (lot as LotSerial) : null
+  }
+
+  /**
+   * Get lot/serials by product ID
+   */
+  static async getLotSerialsByProduct(productId: number): Promise<LotSerial[]> {
+    await this.delay()
+    return lotSerialsData.filter((l) => l.product_id[0] === productId) as LotSerial[]
+  }
+
+  /**
+   * Get lot/serials expiring soon (within days)
+   */
+  static async getExpiringSoonLotSerials(days: number = 60): Promise<LotSerial[]> {
+    await this.delay()
+    const now = new Date()
+    const threshold = new Date()
+    threshold.setDate(threshold.getDate() + days)
+
+    return lotSerialsData.filter((l) => {
+      if (!l.expiration_date) return false
+      const expiryDate = new Date(l.expiration_date)
+      return expiryDate >= now && expiryDate <= threshold
+    }) as LotSerial[]
+  }
+
+  /**
+   * Get expired lot/serials
+   */
+  static async getExpiredLotSerials(): Promise<LotSerial[]> {
+    await this.delay()
+    const now = new Date()
+    return lotSerialsData.filter((l) => {
+      if (!l.expiration_date) return false
+      return new Date(l.expiration_date) < now
+    }) as LotSerial[]
   }
 }
