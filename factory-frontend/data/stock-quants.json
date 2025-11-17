@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "product_id": [1, "Tinh dầu Lavender nguyên chất"],
+    "location_id": [5, "WH - Kho chính / Khu vực lưu trữ / Kệ A"],
+    "quantity": 25.5,
+    "reserved_quantity": 5.0
+  },
+  {
+    "id": 2,
+    "product_id": [1, "Tinh dầu Lavender nguyên chất"],
+    "location_id": [6, "WH - Kho chính / Khu vực lưu trữ / Kệ B"],
+    "quantity": 20.0,
+    "reserved_quantity": 0.0
+  },
+  {
+    "id": 3,
+    "product_id": [2, "Vitamin C nguyên chất (L-Ascorbic Acid)"],
+    "location_id": [5, "WH - Kho chính / Khu vực lưu trữ / Kệ A"],
+    "quantity": 8.3,
+    "reserved_quantity": 1.5
+  },
+  {
+    "id": 4,
+    "product_id": [2, "Vitamin C nguyên chất (L-Ascorbic Acid)"],
+    "location_id": [7, "WH - Kho chính / Khu vực lưu trữ / Kệ C"],
+    "quantity": 4.5,
+    "reserved_quantity": 0.0
+  },
+  {
+    "id": 5,
+    "product_id": [3, "Hyaluronic Acid Serum Base"],
+    "location_id": [6, "WH - Kho chính / Khu vực lưu trữ / Kệ B"],
+    "quantity": 120.0,
+    "reserved_quantity": 20.0
+  },
+  {
+    "id": 6,
+    "product_id": [3, "Hyaluronic Acid Serum Base"],
+    "location_id": [10, "WH2 - Kho phụ / Khu vực lưu trữ"],
+    "quantity": 60.0,
+    "reserved_quantity": 0.0
+  },
+  {
+    "id": 7,
+    "product_id": [4, "Serum Vitamin C 20% - Dưỡng sáng da"],
+    "location_id": [4, "WH - Kho chính / Khu vực xuất hàng"],
+    "quantity": 150,
+    "reserved_quantity": 80
+  },
+  {
+    "id": 8,
+    "product_id": [4, "Serum Vitamin C 20% - Dưỡng sáng da"],
+    "location_id": [6, "WH - Kho chính / Khu vực lưu trữ / Kệ B"],
+    "quantity": 200,
+    "reserved_quantity": 50
+  },
+  {
+    "id": 9,
+    "product_id": [4, "Serum Vitamin C 20% - Dưỡng sáng da"],
+    "location_id": [10, "WH2 - Kho phụ / Khu vực lưu trữ"],
+    "quantity": 100,
+    "reserved_quantity": 0
+  },
+  {
+    "id": 10,
+    "product_id": [5, "Kem dưỡng ẩm Hyaluronic Acid"],
+    "location_id": [6, "WH - Kho chính / Khu vực lưu trữ / Kệ B"],
+    "quantity": 400,
+    "reserved_quantity": 100
+  },
+  {
+    "id": 11,
+    "product_id": [5, "Kem dưỡng ẩm Hyaluronic Acid"],
+    "location_id": [7, "WH - Kho chính / Khu vực lưu trữ / Kệ C"],
+    "quantity": 280,
+    "reserved_quantity": 50
+  },
+  {
+    "id": 12,
+    "product_id": [6, "Sữa rửa mặt Gel Tea Tree"],
+    "location_id": [7, "WH - Kho chính / Khu vực lưu trữ / Kệ C"],
+    "quantity": 520,
+    "reserved_quantity": 200
+  },
+  {
+    "id": 13,
+    "product_id": [6, "Sữa rửa mặt Gel Tea Tree"],
+    "location_id": [10, "WH2 - Kho phụ / Khu vực lưu trữ"],
+    "quantity": 300,
+    "reserved_quantity": 60
+  },
+  {
+    "id": 14,
+    "product_id": [7, "Chai thủy tinh 30ml (Serum)"],
+    "location_id": [8, "WH - Kho chính / Khu vực lưu trữ / Kệ D"],
+    "quantity": 85,
+    "reserved_quantity": 25
+  },
+  {
+    "id": 15,
+    "product_id": [9, "Toner Rose Water 100ml"],
+    "location_id": [6, "WH - Kho chính / Khu vực lưu trữ / Kệ B"],
+    "quantity": 320,
+    "reserved_quantity": 80
+  },
+  {
+    "id": 16,
+    "product_id": [9, "Toner Rose Water 100ml"],
+    "location_id": [7, "WH - Kho chính / Khu vực lưu trữ / Kệ C"],
+    "quantity": 200,
+    "reserved_quantity": 30
+  },
+  {
+    "id": 17,
+    "product_id": [10, "Mặt nạ giấy Collagen - Hộp 10 miếng"],
+    "location_id": [5, "WH - Kho chính / Khu vực lưu trữ / Kệ A"],
+    "quantity": 180,
+    "reserved_quantity": 50
+  },
+  {
+    "id": 18,
+    "product_id": [10, "Mặt nạ giấy Collagen - Hộp 10 miếng"],
+    "location_id": [6, "WH - Kho chính / Khu vực lưu trữ / Kệ B"],
+    "quantity": 160,
+    "reserved_quantity": 40
+  }
+]

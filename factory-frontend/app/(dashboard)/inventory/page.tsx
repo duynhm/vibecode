@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -149,9 +150,11 @@ export default function InventoryPage() {
 
               {/* Actions */}
               <div className="pt-2">
-                <Button variant="outline" size="sm" className="w-full">
-                  Xem chi tiết
-                </Button>
+                <Link href={`/inventory/${product.id}`}>
+                  <Button variant="outline" size="sm" className="w-full">
+                    Xem chi tiết
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

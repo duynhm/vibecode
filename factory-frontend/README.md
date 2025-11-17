@@ -49,16 +49,23 @@ Sử dụng một trong các tài khoản demo:
 ### Phase 1 (Đã hoàn thành) ✅
 
 - **Authentication**: Mock login với 3 roles
-- **Dashboard**: Tổng quan hệ thống
+- **Dashboard**: Tổng quan hệ thống với thống kê
 - **Inventory**: Danh sách sản phẩm với search
 - **Manufacturing**: Danh sách lệnh sản xuất với filter
 
-### Phase 2 (Sắp tới)
+### Phase 2 (Đã hoàn thành) ✅
 
-- Product detail page
-- Stock transfers (Nhập/Xuất/Chuyển kho)
-- Barcode scanner
-- Stock adjustments (Kiểm kê)
+- **Product Detail Page**: Xem chi tiết sản phẩm với tồn kho theo vị trí
+- **Stock Transfers**: Quản lý phiếu nhập/xuất/chuyển kho
+  - Danh sách phiếu kho với filter theo loại (Nhập/Xuất/Chuyển kho)
+  - Chi tiết phiếu kho với danh sách sản phẩm và thông tin giao dịch
+- **Barcode Scanner**: Quét mã vạch để tra cứu sản phẩm
+  - Quét bằng máy quét hoặc nhập thủ công
+  - Lịch sử quét với liên kết đến chi tiết sản phẩm
+- **Stock Adjustments**: Kiểm kê tồn kho
+  - Quét sản phẩm để thêm vào danh sách kiểm kê
+  - So sánh số lượng hệ thống vs số lượng đếm được
+  - Hiển thị chênh lệch và tổng hợp
 
 ### Phase 3 (Sắp tới)
 
@@ -149,13 +156,15 @@ Toàn bộ interface đã được dịch sang tiếng Việt.
 
 ## 📊 Mock Data
 
-Hiện tại ứng dụng sử dụng **mock data** từ các file JSON:
+Hiện tại ứng dụng sử dụng **mock data** từ các file JSON với dữ liệu ngành **gia công mỹ phẩm**:
 
-- **10 sản phẩm** (products.json)
-- **14 locations** (kho/kệ)
-- **8 stock pickings** (phiếu nhập/xuất)
-- **7 manufacturing orders** (lệnh sản xuất)
-- **7 work orders** (công việc sản xuất)
+- **12 sản phẩm** (products.json) - Tinh dầu, vitamin, serum, kem, sữa rửa mặt, toner, mặt nạ, chai lọ
+- **14 locations** (locations.json) - Kho/kệ lưu trữ
+- **8 stock pickings** (pickings.json) - Phiếu nhập/xuất/chuyển kho
+- **16 stock moves** (stock-moves.json) - Chi tiết sản phẩm trong phiếu kho
+- **18 stock quants** (stock-quants.json) - Tồn kho theo vị trí
+- **7 manufacturing orders** (productions.json) - Lệnh sản xuất mỹ phẩm
+- **7 work orders** (workorders.json) - Công việc sản xuất
 
 ## 🔌 Tích hợp Odoo (Tương lai)
 

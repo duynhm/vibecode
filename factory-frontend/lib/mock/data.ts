@@ -1,7 +1,9 @@
-import { Product, StockLocation, StockPicking, MrpProduction, MrpWorkorder } from '@/types'
+import { Product, StockLocation, StockPicking, StockQuant, StockMove, MrpProduction, MrpWorkorder } from '@/types'
 import productsData from '@/data/products.json'
 import locationsData from '@/data/locations.json'
 import pickingsData from '@/data/pickings.json'
+import stockQuantsData from '@/data/stock-quants.json'
+import stockMovesData from '@/data/stock-moves.json'
 import productionsData from '@/data/productions.json'
 import workordersData from '@/data/workorders.json'
 
@@ -91,6 +93,31 @@ export class MockDataService {
     return pickingsData.filter((p) => p.state === state) as StockPicking[]
   }
 
+  /**
+   * Get all stock moves
+   */
+  static async getStockMoves(): Promise<StockMove[]> {
+    await this.delay()
+    return stockMovesData as StockMove[]
+  }
+
+  /**
+   * Get stock moves by picking ID
+   */
+  static async getStockMovesByPicking(pickingId: number): Promise<StockMove[]> {
+    await this.delay()
+    return stockMovesData.filter((m) => m.picking_id === pickingId) as StockMove[]
+  }
+
+  /**
+   * Get stock move by ID
+   */
+  static async getStockMove(id: number): Promise<StockMove | null> {
+    await this.delay()
+    const move = stockMovesData.find((m) => m.id === id)
+    return move ? (move as StockMove) : null
+  }
+
   // ===== MANUFACTURING =====
 
   /**
@@ -149,5 +176,31 @@ export class MockDataService {
   static async getWorkordersByState(state: string): Promise<MrpWorkorder[]> {
     await this.delay()
     return workordersData.filter((w) => w.state === state) as MrpWorkorder[]
+  }
+
+  // ===== STOCK QUANTS =====
+
+  /**
+   * Get all stock quants
+   */
+  static async getStockQuants(): Promise<StockQuant[]> {
+    await this.delay()
+    return stockQuantsData as StockQuant[]
+  }
+
+  /**
+   * Get stock quants by product ID
+   */
+  static async getStockQuantsByProduct(productId: number): Promise<StockQuant[]> {
+    await this.delay()
+    return stockQuantsData.filter((q) => q.product_id[0] === productId) as StockQuant[]
+  }
+
+  /**
+   * Get stock quants by location ID
+   */
+  static async getStockQuantsByLocation(locationId: number): Promise<StockQuant[]> {
+    await this.delay()
+    return stockQuantsData.filter((q) => q.location_id[0] === locationId) as StockQuant[]
   }
 }

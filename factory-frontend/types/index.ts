@@ -54,6 +54,15 @@ export interface StockLocation {
   total_quantity?: number
 }
 
+export interface StockQuant {
+  id: number
+  product_id: [number, string]
+  location_id: [number, string]
+  quantity: number
+  reserved_quantity: number
+  lot_id?: [number, string]
+}
+
 export type PickingState = 'draft' | 'waiting' | 'confirmed' | 'assigned' | 'done' | 'cancel'
 
 export interface StockPicking {
@@ -69,6 +78,21 @@ export interface StockPicking {
   move_ids: number[]
   origin?: string
   products_count?: number
+}
+
+export type MoveState = 'draft' | 'waiting' | 'confirmed' | 'assigned' | 'done' | 'cancel'
+
+export interface StockMove {
+  id: number
+  name: string
+  product_id: [number, string]
+  product_uom_qty: number
+  quantity_done: number
+  product_uom: [number, string]
+  location_id: [number, string]
+  location_dest_id: [number, string]
+  state: MoveState
+  picking_id: number
 }
 
 // Manufacturing types

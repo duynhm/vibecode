@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { Home, Package, Factory, LucideIcon } from 'lucide-react'
+import { Home, Package, Factory, Truck, ScanLine, ClipboardList, LucideIcon } from 'lucide-react'
 
 interface NavItem {
   href: string
@@ -21,6 +21,21 @@ const navItems: NavItem[] = [
     href: '/inventory',
     label: 'Quản lý Kho',
     icon: Package,
+  },
+  {
+    href: '/transfers',
+    label: 'Phiếu Kho',
+    icon: Truck,
+  },
+  {
+    href: '/scan',
+    label: 'Quét Barcode',
+    icon: ScanLine,
+  },
+  {
+    href: '/adjustments',
+    label: 'Kiểm kê',
+    icon: ClipboardList,
   },
   {
     href: '/manufacturing',
