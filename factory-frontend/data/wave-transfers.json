@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "WAVE/001",
+    "picking_ids": [1, 4, 7],
+    "user_id": [1, "Nguyễn Văn Admin"],
+    "state": "in_progress",
+    "wave_type": "automatic",
+    "grouped_by": "product",
+    "scheduled_date": "2025-11-18T09:00:00Z",
+    "pickings_count": 3,
+    "note": "Gom nhóm theo sản phẩm - Serum Vitamin C"
+  },
+  {
+    "id": 2,
+    "name": "WAVE/002",
+    "picking_ids": [2, 5, 8],
+    "user_id": [2, "Trần Thị B"],
+    "state": "done",
+    "wave_type": "automatic",
+    "grouped_by": "product",
+    "scheduled_date": "2025-11-17T10:00:00Z",
+    "pickings_count": 3,
+    "note": "Gom nhóm theo sản phẩm - Kem dưỡng ẩm"
+  },
+  {
+    "id": 3,
+    "name": "WAVE/003",
+    "picking_ids": [3, 6, 9, 10],
+    "user_id": [1, "Nguyễn Văn Admin"],
+    "state": "draft",
+    "wave_type": "manual",
+    "grouped_by": "category",
+    "scheduled_date": "2025-11-19T08:00:00Z",
+    "pickings_count": 4,
+    "note": "Gom nhóm theo danh mục - Sản phẩm chăm sóc da"
+  },
+  {
+    "id": 4,
+    "name": "WAVE/004",
+    "picking_ids": [11, 12],
+    "user_id": [2, "Trần Thị B"],
+    "state": "confirmed",
+    "wave_type": "automatic",
+    "grouped_by": "location",
+    "scheduled_date": "2025-11-18T14:00:00Z",
+    "pickings_count": 2,
+    "note": "Gom nhóm theo vị trí - Khu vực A"
+  },
+  {
+    "id": 5,
+    "name": "WAVE/005",
+    "picking_ids": [13, 14, 15],
+    "user_id": [3, "Lê Văn C"],
+    "state": "draft",
+    "wave_type": "automatic",
+    "grouped_by": "product",
+    "scheduled_date": "2025-11-20T09:00:00Z",
+    "pickings_count": 3,
+    "note": "Gom nhóm theo sản phẩm - Tinh dầu Lavender"
+  },
+  {
+    "id": 6,
+    "name": "WAVE/006",
+    "picking_ids": [16],
+    "user_id": [1, "Nguyễn Văn Admin"],
+    "state": "cancel",
+    "wave_type": "manual",
+    "grouped_by": "category",
+    "scheduled_date": "2025-11-16T11:00:00Z",
+    "pickings_count": 1,
+    "note": "Đã hủy - Thay đổi kế hoạch sản xuất"
+  }
+]

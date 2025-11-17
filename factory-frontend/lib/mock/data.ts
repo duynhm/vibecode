@@ -1,4 +1,4 @@
-import { Product, StockLocation, StockPicking, StockQuant, StockMove, LotSerial, BatchTransfer, MrpProduction, MrpWorkorder } from '@/types'
+import { Product, StockLocation, StockPicking, StockQuant, StockMove, LotSerial, BatchTransfer, WaveTransfer, MrpProduction, MrpWorkorder } from '@/types'
 import productsData from '@/data/products.json'
 import locationsData from '@/data/locations.json'
 import pickingsData from '@/data/pickings.json'
@@ -6,6 +6,7 @@ import stockQuantsData from '@/data/stock-quants.json'
 import stockMovesData from '@/data/stock-moves.json'
 import lotSerialsData from '@/data/lot-serials.json'
 import batchTransfersData from '@/data/batch-transfers.json'
+import waveTransfersData from '@/data/wave-transfers.json'
 import productionsData from '@/data/productions.json'
 import workordersData from '@/data/workorders.json'
 
@@ -304,5 +305,50 @@ export class MockDataService {
     const batch = batchTransfersData.find((b) => b.id === batchId)
     if (!batch) return []
     return pickingsData.filter((p) => batch.picking_ids.includes(p.id)) as StockPicking[]
+  }
+
+  // ===== WAVE TRANSFERS =====
+
+  /**
+   * Get all wave transfers
+   */
+  static async getWaveTransfers(): Promise<WaveTransfer[]> {
+    await this.delay()
+    return waveTransfersData as WaveTransfer[]
+  }
+
+  /**
+   * Get wave transfer by ID
+   */
+  static async getWaveTransfer(id: number): Promise<WaveTransfer | null> {
+    await this.delay()
+    const wave = waveTransfersData.find((w) => w.id === id)
+    return wave ? (wave as WaveTransfer) : null
+  }
+
+  /**
+   * Get wave transfers by state
+   */
+  static async getWaveTransfersByState(state: string): Promise<WaveTransfer[]> {
+    await this.delay()
+    return waveTransfersData.filter((w) => w.state === state) as WaveTransfer[]
+  }
+
+  /**
+   * Get wave transfers by user ID
+   */
+  static async getWaveTransfersByUser(userId: number): Promise<WaveTransfer[]> {
+    await this.delay()
+    return waveTransfersData.filter((w) => w.user_id[0] === userId) as WaveTransfer[]
+  }
+
+  /**
+   * Get pickings in a wave
+   */
+  static async getPickingsByWave(waveId: number): Promise<StockPicking[]> {
+    await this.delay()
+    const wave = waveTransfersData.find((w) => w.id === waveId)
+    if (!wave) return []
+    return pickingsData.filter((p) => wave.picking_ids.includes(p.id)) as StockPicking[]
   }
 }

@@ -116,7 +116,7 @@ export interface LotSerial {
 }
 
 // Batch & Wave Picking types
-export type BatchWaveState = 'draft' | 'in_progress' | 'done' | 'cancel'
+export type BatchWaveState = 'draft' | 'confirmed' | 'in_progress' | 'done' | 'cancel'
 export type BatchGroupCriteria = 'contact' | 'carrier' | 'location' | 'destination' | 'country'
 export type WaveGroupCriteria = 'product' | 'category' | 'location'
 
@@ -144,7 +144,8 @@ export interface WaveTransfer {
   grouped_by: WaveGroupCriteria
   scheduled_date: string
   pickings_count: number
-  total_qty: number
+  total_qty?: number
+  note?: string
 }
 
 // Manufacturing types
