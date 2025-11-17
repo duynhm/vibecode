@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "name": "WH - Kho chính",
+    "complete_name": "WH - Kho chính",
+    "location_id": false,
+    "child_ids": [2, 3, 4],
+    "usage": "view",
+    "barcode": "LOC-WH",
+    "total_quantity": 12835
+  },
+  {
+    "id": 2,
+    "name": "Khu vực lưu trữ",
+    "complete_name": "WH - Kho chính / Khu vực lưu trữ",
+    "location_id": [1, "WH - Kho chính"],
+    "child_ids": [5, 6, 7, 8],
+    "usage": "internal",
+    "barcode": "LOC-WH-STOCK",
+    "total_quantity": 10250
+  },
+  {
+    "id": 3,
+    "name": "Khu vực nhập hàng",
+    "complete_name": "WH - Kho chính / Khu vực nhập hàng",
+    "location_id": [1, "WH - Kho chính"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-WH-INPUT",
+    "total_quantity": 1500
+  },
+  {
+    "id": 4,
+    "name": "Khu vực xuất hàng",
+    "complete_name": "WH - Kho chính / Khu vực xuất hàng",
+    "location_id": [1, "WH - Kho chính"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-WH-OUTPUT",
+    "total_quantity": 1085
+  },
+  {
+    "id": 5,
+    "name": "Kệ A",
+    "complete_name": "WH - Kho chính / Khu vực lưu trữ / Kệ A",
+    "location_id": [2, "Khu vực lưu trữ"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-SHELF-A",
+    "total_quantity": 3200
+  },
+  {
+    "id": 6,
+    "name": "Kệ B",
+    "complete_name": "WH - Kho chính / Khu vực lưu trữ / Kệ B",
+    "location_id": [2, "Khu vực lưu trữ"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-SHELF-B",
+    "total_quantity": 2850
+  },
+  {
+    "id": 7,
+    "name": "Kệ C",
+    "complete_name": "WH - Kho chính / Khu vực lưu trữ / Kệ C",
+    "location_id": [2, "Khu vực lưu trữ"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-SHELF-C",
+    "total_quantity": 2100
+  },
+  {
+    "id": 8,
+    "name": "Kệ D",
+    "complete_name": "WH - Kho chính / Khu vực lưu trữ / Kệ D",
+    "location_id": [2, "Khu vực lưu trữ"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-SHELF-D",
+    "total_quantity": 2100
+  },
+  {
+    "id": 9,
+    "name": "WH2 - Kho phụ",
+    "complete_name": "WH2 - Kho phụ",
+    "location_id": false,
+    "child_ids": [10],
+    "usage": "view",
+    "barcode": "LOC-WH2",
+    "total_quantity": 5420
+  },
+  {
+    "id": 10,
+    "name": "Khu vực lưu trữ",
+    "complete_name": "WH2 - Kho phụ / Khu vực lưu trữ",
+    "location_id": [9, "WH2 - Kho phụ"],
+    "child_ids": [],
+    "usage": "internal",
+    "barcode": "LOC-WH2-STOCK",
+    "total_quantity": 5420
+  },
+  {
+    "id": 11,
+    "name": "Khu sản xuất",
+    "complete_name": "Khu sản xuất",
+    "location_id": false,
+    "child_ids": [],
+    "usage": "production",
+    "barcode": "LOC-PROD",
+    "total_quantity": 0
+  },
+  {
+    "id": 12,
+    "name": "Nhà cung cấp",
+    "complete_name": "Vị trí ảo / Nhà cung cấp",
+    "location_id": false,
+    "child_ids": [],
+    "usage": "supplier",
+    "total_quantity": 0
+  },
+  {
+    "id": 13,
+    "name": "Khách hàng",
+    "complete_name": "Vị trí ảo / Khách hàng",
+    "location_id": false,
+    "child_ids": [],
+    "usage": "customer",
+    "total_quantity": 0
+  },
+  {
+    "id": 14,
+    "name": "Hàng hỏng/Phế liệu",
+    "complete_name": "Vị trí ảo / Hàng hỏng/Phế liệu",
+    "location_id": false,
+    "child_ids": [],
+    "usage": "inventory",
+    "barcode": "LOC-SCRAP",
+    "total_quantity": 0
+  }
+]
