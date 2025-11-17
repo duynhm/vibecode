@@ -63,7 +63,26 @@ Tài liệu kỹ thuật cho dự án Factory Frontend - Ứng dụng quản lý
 - **Implementation Priority**: Phase 1-3
 - **Integration with Inventory**: Component availability, Auto-reserve, etc.
 
-### 6. [Development Setup](./05-development-setup.md)
+### 6. [Đặc tả Odoo 18 Inventory Module](./06-odoo18-inventory-specification.md) ⭐ **MỚI**
+- **Tài liệu tham khảo chi tiết về Odoo 18 Inventory**
+- **Các cải tiến chính so với Odoo 17**:
+  - MTSO (Make to Stock and Order) - Kết hợp MTO + MTS
+  - Wave Picking & Batch Picking tự động
+  - Valuation by Lot/Serial Number
+  - Inter-Company Transfers
+  - Advanced Barcode với Multi-Scan
+  - Real-time Inventory Adjustments
+  - Next Transfer Smart Button
+  - AI-Driven Forecasting
+- **Product Types mới**: Goods/Service/Combo
+- **Workflows chi tiết**: Receipt, Delivery, Transfers, Adjustments
+- **Configuration Checklist**: Pre-launch setup guide
+- **API & Customization**: Model changes, extension points
+- **Migration Guide**: Odoo 17 → 18
+- **Troubleshooting**: Common issues & solutions
+- **Best Practices**: Performance optimization, UI design tips
+
+### 7. [Development Setup](./05-development-setup.md)
 - Prerequisites
 - Environment variables
 - Project initialization (Next.js + dependencies)
@@ -182,6 +201,7 @@ Nếu cần thêm mockups UI, user flows cụ thể, hoặc business logic chi t
 | 03-inventory-features.md | ✅ Complete | Tính năng Inventory |
 | 04-manufacturing-features.md | ✅ Complete | Tính năng Manufacturing |
 | 05-development-setup.md | ✅ Complete | Hướng dẫn setup |
+| 06-odoo18-inventory-specification.md | ✅ Complete | Đặc tả Odoo 18 Inventory (Chi tiết) |
 | README.md | ✅ Complete | Index & Quick start |
 
 ---
