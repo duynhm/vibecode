@@ -130,7 +130,8 @@ export interface BatchTransfer {
   grouped_by: BatchGroupCriteria
   scheduled_date: string
   pickings_count: number
-  total_qty: number
+  total_qty?: number
+  note?: string
 }
 
 export interface WaveTransfer {

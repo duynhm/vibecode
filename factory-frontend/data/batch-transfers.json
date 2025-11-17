@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "BATCH/001",
+    "picking_ids": [1, 2, 3],
+    "user_id": [1, "Nguyễn Văn Admin"],
+    "state": "in_progress",
+    "batch_type": "automatic",
+    "grouped_by": "contact",
+    "scheduled_date": "2025-11-18T08:00:00Z",
+    "pickings_count": 3,
+    "note": "Gom nhóm đơn hàng cùng khách hàng - Công ty TNHH Mỹ Phẩm Sài Gòn"
+  },
+  {
+    "id": 2,
+    "name": "BATCH/002",
+    "picking_ids": [4, 5],
+    "user_id": [1, "Nguyễn Văn Admin"],
+    "state": "done",
+    "batch_type": "automatic",
+    "grouped_by": "contact",
+    "scheduled_date": "2025-11-17T08:00:00Z",
+    "pickings_count": 2,
+    "note": "Gom nhóm đơn hàng cùng khách hàng - Công ty TNHH Thương Mại Hà Nội"
+  },
+  {
+    "id": 3,
+    "name": "BATCH/003",
+    "picking_ids": [6, 7, 8, 9],
+    "user_id": [2, "Trần Thị B"],
+    "state": "draft",
+    "batch_type": "manual",
+    "grouped_by": "location",
+    "scheduled_date": "2025-11-19T09:00:00Z",
+    "pickings_count": 4,
+    "note": "Gom nhóm theo vị trí kho - Khu A"
+  },
+  {
+    "id": 4,
+    "name": "BATCH/004",
+    "picking_ids": [10],
+    "user_id": [2, "Trần Thị B"],
+    "state": "in_progress",
+    "batch_type": "manual",
+    "grouped_by": "destination",
+    "scheduled_date": "2025-11-18T14:00:00Z",
+    "pickings_count": 1,
+    "note": "Đơn hàng khẩn - Giao ngay trong ngày"
+  },
+  {
+    "id": 5,
+    "name": "BATCH/005",
+    "picking_ids": [11, 12, 13],
+    "user_id": [1, "Nguyễn Văn Admin"],
+    "state": "draft",
+    "batch_type": "automatic",
+    "grouped_by": "carrier",
+    "scheduled_date": "2025-11-20T08:00:00Z",
+    "pickings_count": 3,
+    "note": "Gom nhóm theo đơn vị vận chuyển - Giao Hàng Nhanh"
+  },
+  {
+    "id": 6,
+    "name": "BATCH/006",
+    "picking_ids": [14, 15],
+    "user_id": [3, "Lê Văn C"],
+    "state": "cancel",
+    "batch_type": "manual",
+    "grouped_by": "contact",
+    "scheduled_date": "2025-11-16T10:00:00Z",
+    "pickings_count": 2,
+    "note": "Đã hủy - Khách hàng hoãn đơn hàng"
+  }
+]

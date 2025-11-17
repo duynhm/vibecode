@@ -1,10 +1,11 @@
-import { Product, StockLocation, StockPicking, StockQuant, StockMove, LotSerial, MrpProduction, MrpWorkorder } from '@/types'
+import { Product, StockLocation, StockPicking, StockQuant, StockMove, LotSerial, BatchTransfer, MrpProduction, MrpWorkorder } from '@/types'
 import productsData from '@/data/products.json'
 import locationsData from '@/data/locations.json'
 import pickingsData from '@/data/pickings.json'
 import stockQuantsData from '@/data/stock-quants.json'
 import stockMovesData from '@/data/stock-moves.json'
 import lotSerialsData from '@/data/lot-serials.json'
+import batchTransfersData from '@/data/batch-transfers.json'
 import productionsData from '@/data/productions.json'
 import workordersData from '@/data/workorders.json'
 
@@ -258,5 +259,50 @@ export class MockDataService {
       if (!l.expiration_date) return false
       return new Date(l.expiration_date) < now
     }) as LotSerial[]
+  }
+
+  // ===== BATCH TRANSFERS =====
+
+  /**
+   * Get all batch transfers
+   */
+  static async getBatchTransfers(): Promise<BatchTransfer[]> {
+    await this.delay()
+    return batchTransfersData as BatchTransfer[]
+  }
+
+  /**
+   * Get batch transfer by ID
+   */
+  static async getBatchTransfer(id: number): Promise<BatchTransfer | null> {
+    await this.delay()
+    const batch = batchTransfersData.find((b) => b.id === id)
+    return batch ? (batch as BatchTransfer) : null
+  }
+
+  /**
+   * Get batch transfers by state
+   */
+  static async getBatchTransfersByState(state: string): Promise<BatchTransfer[]> {
+    await this.delay()
+    return batchTransfersData.filter((b) => b.state === state) as BatchTransfer[]
+  }
+
+  /**
+   * Get batch transfers by user ID
+   */
+  static async getBatchTransfersByUser(userId: number): Promise<BatchTransfer[]> {
+    await this.delay()
+    return batchTransfersData.filter((b) => b.user_id[0] === userId) as BatchTransfer[]
+  }
+
+  /**
+   * Get pickings in a batch
+   */
+  static async getPickingsByBatch(batchId: number): Promise<StockPicking[]> {
+    await this.delay()
+    const batch = batchTransfersData.find((b) => b.id === batchId)
+    if (!batch) return []
+    return pickingsData.filter((p) => batch.picking_ids.includes(p.id)) as StockPicking[]
   }
 }
